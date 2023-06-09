@@ -4,10 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.LifecycleOwner
-import androidx.navigation.fragment.findNavController
 import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.extension.observe
 import com.syfuzzaman.mvvm_android_arch.model.Resource
@@ -21,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         observePosts()
+        observePopularMovies()
     }
 
     private fun observePosts(){
@@ -38,6 +35,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
         homeViewModel.postApi()
+    }
+
+    private fun observePopularMovies(){
+        observe(homeViewModel.popularMoviesResponse){
+            when(it){
+                is Resource.Success ->{
+                    Log.d("ObservedPopularMoviesList", "Data: "+it.data)
+                }
+                is Resource.Failure ->{
+                    Log.d("ObservedPopularMoviesList", "Error: "+it.error.code+" "+it.error.msg)
+                }
+            }
+        }
+        homeViewModel.popularMoviesApi()
     }
 
 }

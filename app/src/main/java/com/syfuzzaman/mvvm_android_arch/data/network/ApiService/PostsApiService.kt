@@ -1,8 +1,7 @@
-package com.syfuzzaman.mvvm_android_arch.data.network.retrofit
+package com.syfuzzaman.mvvm_android_arch.data.network.ApiService
 
 import com.syfuzzaman.mvvm_android_arch.data.network.response.PostsApiResponse
 import com.syfuzzaman.mvvm_android_arch.data.network.retrofit.ExternalApi
-import com.syfuzzaman.mvvm_android_arch.di.BaseUrlQualifier
 import javax.inject.Inject
 
 class PostsApiService @Inject constructor(
