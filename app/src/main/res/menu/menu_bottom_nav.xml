@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/moviesFragment"
+        android:icon="@drawable/ic_movie"
+        android:title="@string/movies" />
+
+    <item
+        android:id="@+id/tvshowFragment"
+        android:icon="@drawable/ic_tv"
+        android:title="@string/tv_shows" />
+
+    <item
+        android:id="@+id/peopleFragment"
+        android:icon="@drawable/ic_people"
+        android:title="@string/people" />
+
+</menu>
