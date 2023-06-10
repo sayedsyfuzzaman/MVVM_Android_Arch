@@ -17,7 +17,7 @@ object NetworkModule {
 
     //EXTERNAL API RETROFIT SERVICE START
     @Provides
-    fun Url() = ""
+    fun Url() = "https://sample.com/"
 
     @Provides
     @Singleton
