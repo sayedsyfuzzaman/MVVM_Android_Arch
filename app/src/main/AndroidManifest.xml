@@ -19,7 +19,6 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true"
-            android:label="@string/title_activity_home"
             android:theme="@style/Theme.MVVM_Android_Arch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

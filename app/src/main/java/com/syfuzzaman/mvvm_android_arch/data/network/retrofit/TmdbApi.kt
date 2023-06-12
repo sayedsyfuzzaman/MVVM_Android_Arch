@@ -14,4 +14,12 @@ interface TmdbApi {
         @Query("page") page: Int
     ):TmdbMovieBaseResponse
 
+    @GET("movie/now_playing")
+    suspend fun nowPlayingMovies(
+        @Header("Authorization") accessToken:String,
+        @Header("accept") accept:String,
+        @Query("language") language: String,
+        @Query("page") page: Int
+    ):TmdbMovieBaseResponse
+
 }

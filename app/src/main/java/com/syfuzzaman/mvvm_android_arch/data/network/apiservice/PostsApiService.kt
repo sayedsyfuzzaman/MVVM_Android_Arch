@@ -1,4 +1,4 @@
-package com.syfuzzaman.mvvm_android_arch.data.network.ApiService
+package com.syfuzzaman.mvvm_android_arch.data.network.apiservice
 
 import com.syfuzzaman.mvvm_android_arch.data.network.response.PostsApiResponse
 import com.syfuzzaman.mvvm_android_arch.data.network.retrofit.ExternalApi
