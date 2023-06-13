@@ -4,11 +4,14 @@ import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import coil.request.ImageRequest
+import com.syfuzzaman.mvvm_android_arch.R
 
 fun View.show(){
     this.visibility = View.VISIBLE
@@ -78,5 +81,20 @@ fun NavController.navigatePopUpTo(
                 this.inclusive = inclusive
             }
         }
+    })
+}
+
+fun ImageView.loadPlaceholder() {
+    scaleType = ImageView.ScaleType.CENTER_CROP
+    setImageResource(R.drawable.poster_placeholder)
+}
+
+fun ImageRequest.Builder.initListener(view: ImageView, maintainRatio: Boolean = true) {
+    listener(onStart = {
+        view.scaleType = ImageView.ScaleType.CENTER_CROP
+    }, onError = { _, _ ->
+        view.scaleType = ImageView.ScaleType.CENTER_CROP
+    }, onSuccess = { _, _ ->
+        view.scaleType = if (maintainRatio) ImageView.ScaleType.FIT_CENTER else ImageView.ScaleType.CENTER_CROP
     })
 }
