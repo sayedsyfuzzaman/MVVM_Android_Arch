@@ -1,5 +1,6 @@
 package com.syfuzzaman.mvvm_android_arch.util
 
+import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
@@ -16,8 +17,10 @@ class BindingUtil {
             view.load("https://image.tmdb.org/t/p/original$imageUrl"){
                 crossfade(true)
                 placeholder(R.drawable.poster_placeholder)
-                scale(Scale.FIT)
+                scale(Scale.FILL)
             }
+
+            Log.d("ImageUrl", imageUrl.toString())
         }
     }
 
