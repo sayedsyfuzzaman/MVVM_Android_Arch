@@ -17,26 +17,59 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/radioGroupLayout"
+        app:layout_constraintBottom_toBottomOf="@id/radioGroupLayout"
         android:maxLines="1"
         android:ellipsize="end"
+        android:layout_marginStart="4dp"
         />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/radioGroupLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/rvHomeTrendingList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTrendingHome"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:id="@+id/radioGroupTrending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioBtnToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today" />
+
+            <RadioButton
+                android:id="@+id/radioBtnThisWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This Week" />
+        </RadioGroup>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvHomeTrendingList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTrendingHome"
         app:reverseLayout="false"
-        tools:visibility="visible"
         tools:listitem="@layout/item_movie"
-        android:layout_marginVertical="4dp"/>
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBar"

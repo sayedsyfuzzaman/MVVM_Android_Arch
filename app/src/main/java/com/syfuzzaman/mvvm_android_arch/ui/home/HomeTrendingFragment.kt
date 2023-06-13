@@ -2,15 +2,13 @@ package com.syfuzzaman.mvvm_android_arch.ui.home
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbMovieResultResponse
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentHomeTrendingBinding
 import com.syfuzzaman.mvvm_android_arch.extension.observe
@@ -34,7 +32,6 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("hometrending", "onViewCreated")
 
         binding.progressBar.visibility = View.VISIBLE
 
@@ -49,23 +46,32 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
             layoutManager = linearLayoutManager
             addItemDecoration(MarginItemDecoration(12))
         }
-        observePopularMovies()
-        homeViewModel.popularMoviesApi()
+
+
+        binding.radioGroupTrending.setOnCheckedChangeListener { group, checkedId -> // Handle radio button selection change here
+            when (checkedId) {
+                com.syfuzzaman.mvvm_android_arch.R.id.radioBtnToday -> {
+                    observeAllTrending("day")
+                }
+                com.syfuzzaman.mvvm_android_arch.R.id.radioBtnThisWeek -> {
+                    observeAllTrending("week")
+                }
+            }
+        }
+
+        observeAllTrending("day")
     }
 
     override fun onDestroyView() {
-        Log.d("hometrending", "onDestroyView")
         super.onDestroyView()
         binding.rvHomeTrendingList.adapter = null
-        homeViewModel.popularMoviesResponse.value = null
     }
 
-    private fun observePopularMovies(){
-        Log.d("hometrending", "ObservedPopularMoviesList")
-        observe(homeViewModel.popularMoviesResponse){
+    private fun observeAllTrending(timeWindow: String){
+        observe(homeViewModel.trendingApiResponse){
             when(it){
                 is Resource.Success ->{
-                    Log.d("hometrending ObservedPopularMoviesList", "Data: "+it.data)
+                    Log.d("TMDB_API_LOG", "Data from network: "+it.data)
                     binding.progressBar.visibility = View.GONE
                     it.data.let { dataList ->
                         mAdapter.removeAll()
@@ -73,9 +79,10 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
                     }
                 }
                 is Resource.Failure ->{
-                    Log.d("hometrending ObservedPopularMoviesList", "Error: "+it.error.code+" "+it.error.msg)
+                    Log.d("TMDB_API_LOG", "Error from network: "+it.error.code+" - "+it.error.msg)
                 }
             }
         }
+        homeViewModel.trendingAll(timeWindow)
     }
 }

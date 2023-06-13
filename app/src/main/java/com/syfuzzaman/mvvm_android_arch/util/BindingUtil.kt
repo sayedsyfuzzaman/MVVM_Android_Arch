@@ -19,8 +19,6 @@ class BindingUtil {
                 placeholder(R.drawable.poster_placeholder)
                 scale(Scale.FILL)
             }
-
-            Log.d("ImageUrl", imageUrl.toString())
         }
     }
 
