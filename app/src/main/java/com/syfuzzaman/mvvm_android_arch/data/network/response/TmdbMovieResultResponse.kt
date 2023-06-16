@@ -14,7 +14,9 @@ data class TmdbMovieResultResponse(
     @SerializedName("original_language")
     val original_language: String,
     @SerializedName("original_title")
-    val original_title: String,
+    val original_title: String? = null,
+    @SerializedName("name")
+    val name: String? = null,
     @SerializedName("overview")
     val overview: String,
     @SerializedName("popularity")

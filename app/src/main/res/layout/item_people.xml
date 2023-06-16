@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.syfuzzaman.mvvm_android_arch.ui.common.BaseListItemCallback" />
+
+        <variable
+            name="data"
+            type="com.syfuzzaman.mvvm_android_arch.data.network.response.PeopleKnownFor" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/movieLayout"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:foreground="@drawable/ripple_movie_item"
+        android:onClick="@{()->callback.onItemClicked(data)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgMoviePoster"
+            loadImageFromUrl="@{data.poster_path}"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/white"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"
+            app:srcCompat="@drawable/poster_placeholder" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -84,5 +85,10 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
             }
         }
         homeViewModel.trendingAll(timeWindow)
+    }
+
+    override fun onItemClicked(item: TmdbMovieResultResponse) {
+        super.onItemClicked(item)
+        Toast.makeText(requireContext(), "Clicked on: ${item.original_title ?: item.name }", Toast.LENGTH_SHORT).show()
     }
 }

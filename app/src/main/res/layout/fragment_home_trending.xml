@@ -31,7 +31,8 @@
         app:layout_constraintBottom_toTopOf="@+id/rvHomeTrendingList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/tvTrendingHome"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="end">
 
         <RadioGroup
             android:id="@+id/radioGroupTrending"
@@ -39,17 +40,30 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/radioBtnToday"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Today" />
+                android:layout_height="28dp"
+                android:text="Today"
+                android:background="@drawable/radio_btn_today_selector"
+                android:checked="true"
+                android:button="@android:color/transparent"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:paddingHorizontal="12dp"/>
 
-            <RadioButton
+            <androidx.appcompat.widget.AppCompatRadioButton
                 android:id="@+id/radioBtnThisWeek"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This Week" />
+                android:layout_height="28dp"
+                android:text="This Week"
+                android:checked="false"
+                android:background="@drawable/radio_btn_week_selector"
+                android:button="@android:color/transparent"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:paddingHorizontal="12dp"
+                />
         </RadioGroup>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -58,7 +72,7 @@
         android:id="@+id/rvHomeTrendingList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="4dp"
+        android:layout_marginVertical="8dp"
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
         android:orientation="horizontal"
@@ -69,7 +83,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTrendingHome"
         app:reverseLayout="false"
         tools:listitem="@layout/item_movie"
-        tools:visibility="visible" />
+        tools:visibility="visible"
+        android:contentDescription="Trending"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -77,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvTrendingHome"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

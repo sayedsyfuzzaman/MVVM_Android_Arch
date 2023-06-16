@@ -1,6 +1,7 @@
 package com.syfuzzaman.mvvm_android_arch.data.network.retrofit
 
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbMovieBaseResponse
+import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbPeopleBaseResponse
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -30,5 +31,13 @@ interface TmdbApi {
         @Header("accept") accept:String,
         @Query("language") language: String
     ):TmdbMovieBaseResponse
+
+    @GET("person/popular")
+    suspend fun popularPeoples(
+        @Header("Authorization") accessToken:String,
+        @Header("accept") accept:String,
+        @Query("language") language: String,
+        @Query("page") page: Int,
+    ):TmdbPeopleBaseResponse
 
 }

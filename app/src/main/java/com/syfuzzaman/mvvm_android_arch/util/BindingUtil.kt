@@ -2,6 +2,7 @@ package com.syfuzzaman.mvvm_android_arch.util
 
 import android.util.Log
 import android.widget.ImageView
+import android.widget.ImageView.ScaleType
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.size.Scale
