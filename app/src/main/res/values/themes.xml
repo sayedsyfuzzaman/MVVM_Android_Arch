@@ -26,4 +26,11 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">15dp</item>
     </style>
+
+    <style name="ToolBarStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:colorControlActivated">@color/colorAccent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>

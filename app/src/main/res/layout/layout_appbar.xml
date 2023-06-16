@@ -2,33 +2,17 @@
 <com.google.android.material.appbar.AppBarLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/action_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:outlineProvider="none"
-    android:background="@color/main_background_color">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:background="@android:color/transparent"
+    android:outlineProvider="none">
 
-    <com.google.android.material.appbar.CollapsingToolbarLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleEnabled="false"
-        app:contentScrim="@color/main_background_color"
-        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
-
-        <ImageView
-            android:id="@+id/appLogoImageView"
-            android:layout_width="100dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="16dp"
-            android:elevation="8dp"
-            android:layout_gravity="center_vertical"
-            android:contentDescription="App Logo"
-            app:srcCompat="@drawable/ic_logo"
-            android:fitsSystemWindows="true"
-            app:layout_collapseMode="pin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        app:contentScrim="@color/main_background_color">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -36,10 +20,11 @@
             android:layout_height="?attr/actionBarSize"
             android:paddingStart="0dp"
             android:paddingEnd="4dp"
-            app:layout_collapseMode="pin"
-            app:contentInsetStartWithNavigation="0dp"
+            app:titleTextColor="@color/white"
+            android:theme="@style/ToolBarStyle"
             app:title=""
-            app:titleTextColor="@android:color/transparent" />
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:contentInsetStartWithNavigation="0dp" />
 
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </FrameLayout>
 </com.google.android.material.appbar.AppBarLayout>

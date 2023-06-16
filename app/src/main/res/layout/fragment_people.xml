@@ -8,21 +8,6 @@
     android:background="@color/main_background_color">
 
 
-    <TextView
-        android:id="@+id/tvPopularPeople"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Popular Peoples"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPeopleList"
         android:layout_width="0dp"
@@ -37,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPopularPeople"
+        app:layout_constraintTop_toTopOf="parent"
         app:reverseLayout="false"
         tools:itemCount="20"
         tools:listitem="@layout/item_people"
