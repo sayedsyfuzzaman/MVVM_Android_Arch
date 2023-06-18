@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbMovieResultResponse
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentHomeTrendingBinding
+import com.syfuzzaman.mvvm_android_arch.extension.navigateTo
 import com.syfuzzaman.mvvm_android_arch.extension.observe
 import com.syfuzzaman.mvvm_android_arch.model.Resource
 import com.syfuzzaman.mvvm_android_arch.ui.common.BaseListItemCallback
@@ -35,6 +38,7 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
         super.onViewCreated(view, savedInstanceState)
 
         binding.progressBar.visibility = View.VISIBLE
+        binding.progressBarLayout.visibility = View.VISIBLE
 
         mAdapter = HomeTrendingAdapter(this)
         val linearLayoutManager = object : LinearLayoutManager(context, HORIZONTAL, false) {
@@ -74,6 +78,7 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
                 is Resource.Success ->{
                     Log.d("TMDB_API_LOG", "Data from network: "+it.data)
                     binding.progressBar.visibility = View.GONE
+                    binding.progressBarLayout.visibility = View.GONE
                     it.data.let { dataList ->
                         mAdapter.removeAll()
                         mAdapter.addAll(dataList.results ?: emptyList())
@@ -89,6 +94,9 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
 
     override fun onItemClicked(item: TmdbMovieResultResponse) {
         super.onItemClicked(item)
-        Toast.makeText(requireContext(), "Clicked on: ${item.original_title ?: item.name }", Toast.LENGTH_SHORT).show()
+        parentFragment?.findNavController()?.navigateTo(
+            R.id.movieDetailsFragment
+        )
+//        Toast.makeText(requireContext(), "Clicked on: ${item.original_title ?: item.name }", Toast.LENGTH_SHORT).show()
     }
 }

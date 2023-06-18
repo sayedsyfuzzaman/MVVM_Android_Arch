@@ -25,4 +25,9 @@
         android:name="com.syfuzzaman.mvvm_android_arch.ui.tvshow.TvshowFragment"
         android:label="fragment_tvshow"
         tools:layout="@layout/fragment_tvshow" />
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.syfuzzaman.mvvm_android_arch.ui.movies.MovieDetailsFragment"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" />
 </navigation>
