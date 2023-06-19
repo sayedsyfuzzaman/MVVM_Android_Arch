@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toolbar
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentMovieDetailsBinding
+import com.syfuzzaman.mvvm_android_arch.ui.home.HomeActivity
 
 class MovieDetailsFragment : Fragment() {
 

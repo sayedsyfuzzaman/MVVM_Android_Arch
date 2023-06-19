@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbMovieResultResponse
+import com.syfuzzaman.mvvm_android_arch.data.network.response.newresponse.Data
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentHomeTrendingBinding
 import com.syfuzzaman.mvvm_android_arch.extension.navigateTo
 import com.syfuzzaman.mvvm_android_arch.extension.observe
@@ -65,6 +66,7 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
         }
 
         observeAllTrending("day")
+        observePassengerApi()
     }
 
     override fun onDestroyView() {
@@ -90,6 +92,33 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
             }
         }
         homeViewModel.trendingAll(timeWindow)
+    }
+
+    fun observePassengerApi(){
+        observe(homeViewModel.passengerResponse){
+            when(it){
+                is Resource.Success ->{
+                    Log.d("TMDB_API_LOG", "Data from network: "+it.data)
+
+                    it.data.let { passengerResponse ->
+                        passengerResponse.data.let { data ->
+                            data.let { data ->
+                                data.forEach { item ->
+                                    Log.d("NESTED", item.toString())
+                                    item.airline
+//                                    mAdapter.addAll(dataList.results ?: emptyList())
+                                }
+                            }
+                        }
+
+                    }
+                }
+                is Resource.Failure ->{
+                    Log.d("TMDB_API_LOG", "Error from network: "+it.error.code+" - "+it.error.msg)
+                }
+            }
+        }
+        homeViewModel.passengerApi()
     }
 
     override fun onItemClicked(item: TmdbMovieResultResponse) {
