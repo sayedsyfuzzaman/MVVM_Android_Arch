@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -13,16 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbMovieResultResponse
-import com.syfuzzaman.mvvm_android_arch.data.network.response.newresponse.Data
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentHomeTrendingBinding
 import com.syfuzzaman.mvvm_android_arch.extension.navigateTo
 import com.syfuzzaman.mvvm_android_arch.extension.observe
 import com.syfuzzaman.mvvm_android_arch.model.Resource
+import com.syfuzzaman.mvvm_android_arch.ui.common.BaseFragment
 import com.syfuzzaman.mvvm_android_arch.ui.common.BaseListItemCallback
 import com.syfuzzaman.mvvm_android_arch.util.MarginItemDecoration
 
 
-class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultResponse> {
+class HomeTrendingFragment : BaseFragment(), BaseListItemCallback<TmdbMovieResultResponse> {
     private lateinit var binding: FragmentHomeTrendingBinding
     private lateinit var mAdapter: HomeTrendingAdapter
     private val homeViewModel by activityViewModels<HomeViewModel>()
@@ -56,17 +55,18 @@ class HomeTrendingFragment : Fragment(), BaseListItemCallback<TmdbMovieResultRes
 
         binding.radioGroupTrending.setOnCheckedChangeListener { group, checkedId -> // Handle radio button selection change here
             when (checkedId) {
-                com.syfuzzaman.mvvm_android_arch.R.id.radioBtnToday -> {
+                R.id.radioBtnToday -> {
                     observeAllTrending("day")
                 }
-                com.syfuzzaman.mvvm_android_arch.R.id.radioBtnThisWeek -> {
+                R.id.radioBtnThisWeek -> {
                     observeAllTrending("week")
                 }
             }
         }
 
         observeAllTrending("day")
-        observePassengerApi()
+//        observePassengerApi()
+
     }
 
     override fun onDestroyView() {

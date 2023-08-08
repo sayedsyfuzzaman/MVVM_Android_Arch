@@ -10,9 +10,10 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentMovieDetailsBinding
+import com.syfuzzaman.mvvm_android_arch.ui.common.BaseFragment
 import com.syfuzzaman.mvvm_android_arch.ui.home.HomeActivity
 
-class MovieDetailsFragment : Fragment() {
+class MovieDetailsFragment : BaseFragment() {
 
     private lateinit var binding: FragmentMovieDetailsBinding
 

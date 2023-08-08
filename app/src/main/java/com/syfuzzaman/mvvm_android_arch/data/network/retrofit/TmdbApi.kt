@@ -7,7 +7,7 @@ import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface TmdbApi {
+interface  TmdbApi {
     @GET("movie/popular")
     suspend fun popularMovies(
         @Header("Authorization") accessToken:String,

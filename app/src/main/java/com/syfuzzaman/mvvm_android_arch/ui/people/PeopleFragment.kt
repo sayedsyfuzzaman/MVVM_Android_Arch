@@ -13,9 +13,10 @@ import com.syfuzzaman.mvvm_android_arch.R
 import com.syfuzzaman.mvvm_android_arch.data.network.response.PeopleKnownFor
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentPeopleBinding
 import com.syfuzzaman.mvvm_android_arch.extension.observe
+import com.syfuzzaman.mvvm_android_arch.ui.common.BaseFragment
 import com.syfuzzaman.mvvm_android_arch.ui.common.BaseListItemCallback
 
-class PeopleFragment : Fragment(), BaseListItemCallback<PeopleKnownFor> {
+class PeopleFragment : BaseFragment(), BaseListItemCallback<PeopleKnownFor> {
     private lateinit var mAdapter: PeopleContentAdapter
     private lateinit var binding: FragmentPeopleBinding
     private val peopleViewModel by activityViewModels<PeopleViewModel>()

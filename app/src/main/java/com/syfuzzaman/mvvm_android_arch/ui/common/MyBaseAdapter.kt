@@ -1,5 +1,6 @@
 package com.syfuzzaman.mvvm_android_arch.ui.common
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil

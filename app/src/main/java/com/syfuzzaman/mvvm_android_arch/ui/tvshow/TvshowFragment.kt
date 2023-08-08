@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.syfuzzaman.mvvm_android_arch.R
+import com.syfuzzaman.mvvm_android_arch.ui.common.BaseFragment
 
-class TvshowFragment : Fragment() {
+class TvshowFragment : BaseFragment() {
 
 
     override fun onCreateView(

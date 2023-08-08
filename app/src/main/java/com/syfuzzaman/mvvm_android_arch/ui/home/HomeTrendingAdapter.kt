@@ -17,6 +17,7 @@ class HomeTrendingAdapter(
         return R.layout.item_movie
     }
 
+
 //    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 //        super.onBindViewHolder(holder, position)
 //        val moviePoster = holder.itemView.findViewById<ImageView>(R.id.imgMoviePoster)
