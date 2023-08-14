@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.syfuzzaman.mvvm_android_arch.data.network.response.Backdrops" />
+
+        <variable
+            name="callback"
+            type="com.syfuzzaman.mvvm_android_arch.ui.common.BaseListItemCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_background_color">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/featured_image"
+            loadImageFromUrl="@{data.filePath}"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="image"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="?attr/shapeAppearanceMediumComponent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/featured_image"
+            app:layout_constraintEnd_toEndOf="@+id/featured_image"
+            app:layout_constraintStart_toStartOf="@+id/featured_image"
+            app:layout_constraintTop_toTopOf="@+id/featured_image"
+            app:shapeAppearance="?attr/shapeAppearanceMediumComponent" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_bottom_shadow_black"
+            app:layout_constraintBottom_toBottomOf="@+id/featured_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

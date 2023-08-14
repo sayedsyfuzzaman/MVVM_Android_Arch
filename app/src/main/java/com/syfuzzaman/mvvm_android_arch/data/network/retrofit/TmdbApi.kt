@@ -1,5 +1,6 @@
 package com.syfuzzaman.mvvm_android_arch.data.network.retrofit
 
+import com.syfuzzaman.mvvm_android_arch.data.network.response.ImageCollectionsResponse
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbMovieBaseResponse
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbPeopleBaseResponse
 import retrofit2.http.GET
@@ -39,5 +40,12 @@ interface  TmdbApi {
         @Query("language") language: String,
         @Query("page") page: Int,
     ):TmdbPeopleBaseResponse
+
+    @GET("collection/{collection_id}/images")
+    suspend fun imageCollections(
+        @Path("collection_id") collection_id: Int,
+        @Header("Authorization") accessToken:String,
+        @Header("accept") accept:String
+    ): ImageCollectionsResponse
 
 }

@@ -8,63 +8,17 @@
     tools:context=".ui.home.HomeFragment"
     android:background="@color/main_background_color">
 
-    <ImageView
-        android:id="@+id/welcomeBg"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:src="@drawable/movie_poster_bg"
-        android:scaleType="centerCrop"
-        android:alpha="0.4"
-        android:foreground="@color/blue"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/featuredFragment"
+        android:name="com.syfuzzaman.mvvm_android_arch.ui.home.banner.FeaturedContentFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/app_name"
-        />
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/bg_bottom_shadow_black"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="@id/welcomeBg"
-        app:layout_constraintEnd_toEndOf="@id/welcomeBg"
-        app:layout_constraintBottom_toBottomOf="@id/welcomeBg"
-        />
+        tools:ignore="MissingConstraints"
+        tools:layout="@layout/fragment_featured_content" />
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Welcome."
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:ellipsize="end"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/welcomeBg"
-        app:layout_constraintBottom_toTopOf="@id/tvWelcomeSub"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintVertical_chainStyle="packed"
-        />
-    <TextView
-        android:id="@+id/tvWelcomeSub"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Millions of movies, TV shows and people to discover. Explore now."
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tvWelcome"
-        app:layout_constraintStart_toStartOf="@id/tvWelcome"
-        app:layout_constraintEnd_toEndOf="@id/tvWelcome"
-        app:layout_constraintBottom_toBottomOf="@id/welcomeBg"
-        android:layout_marginTop="4dp"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:layout_marginBottom="28dp"
-        />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/homeTrendingFragment"
@@ -73,7 +27,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcomeBg"
+        app:layout_constraintTop_toBottomOf="@id/featuredFragment"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="8dp"/>
 

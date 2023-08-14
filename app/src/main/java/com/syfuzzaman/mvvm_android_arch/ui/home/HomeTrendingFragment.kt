@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.syfuzzaman.mvvm_android_arch.R
+import com.syfuzzaman.mvvm_android_arch.data.network.response.Backdrops
 import com.syfuzzaman.mvvm_android_arch.data.network.response.TmdbMovieResultResponse
 import com.syfuzzaman.mvvm_android_arch.databinding.FragmentHomeTrendingBinding
 import com.syfuzzaman.mvvm_android_arch.extension.navigateTo
