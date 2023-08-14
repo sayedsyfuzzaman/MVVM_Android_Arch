@@ -33,9 +33,6 @@ object NetworkModule {
     //EXTERNAL API RETROFIT SERVICE START
 
 
-
-
-
     // TMDB API RETROFIT SERVICE START
     @Provides
     @BaseUrlQualifier

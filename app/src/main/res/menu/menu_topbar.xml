@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_notification"
+        android:title="Notification"
+        app:actionLayout="@layout/notification_action_layout"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_avatar"
+        android:title="Avatar"
+        app:actionLayout="@layout/action_layout_circle_image"
+        app:showAsAction="always" />
+</menu>
