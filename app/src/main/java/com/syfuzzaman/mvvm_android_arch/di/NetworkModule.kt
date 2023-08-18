@@ -1,5 +1,6 @@
 package com.syfuzzaman.mvvm_android_arch.di
 
+import com.syfuzzaman.mvvm_android_arch.data.network.inercetor.CustomLoggingInterceptor
 import com.syfuzzaman.mvvm_android_arch.data.network.retrofit.ExternalApi
 import com.syfuzzaman.mvvm_android_arch.data.network.retrofit.TmdbApi
 import dagger.Module
@@ -40,10 +41,21 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun providesTmdbApiService(@BaseUrlQualifier url:String) : TmdbApi =
+    fun provideOkHttpClient(): OkHttpClient {
+        val customInterceptor = CustomLoggingInterceptor()
+
+        return OkHttpClient.Builder()
+            .addInterceptor(customInterceptor)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesTmdbApiService(@BaseUrlQualifier url: String): TmdbApi =
         Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(provideOkHttpClient()) // Use the custom OkHttpClient with interceptor
             .build()
             .create(TmdbApi::class.java)
     // TMDB API RETROFIT SERVICE END
