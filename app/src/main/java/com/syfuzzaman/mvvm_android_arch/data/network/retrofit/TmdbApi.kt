@@ -11,16 +11,12 @@ import retrofit2.http.Query
 interface  TmdbApi {
     @GET("movie/popular")
     suspend fun popularMovies(
-        @Header("Authorization") accessToken:String,
-        @Header("accept") accept:String,
         @Query("language") language: String,
         @Query("page") page: Int
     ):TmdbMovieBaseResponse
 
     @GET("movie/now_playing")
     suspend fun nowPlayingMovies(
-        @Header("Authorization") accessToken:String,
-        @Header("accept") accept:String,
         @Query("language") language: String,
         @Query("page") page: Int
     ):TmdbMovieBaseResponse
@@ -28,24 +24,18 @@ interface  TmdbApi {
     @GET("trending/all/{time_window}")
     suspend fun allTrending(
         @Path("time_window") time_window: String,
-        @Header("Authorization") accessToken:String,
-        @Header("accept") accept:String,
         @Query("language") language: String
     ):TmdbMovieBaseResponse
 
     @GET("person/popular")
     suspend fun popularPeoples(
-        @Header("Authorization") accessToken:String,
-        @Header("accept") accept:String,
         @Query("language") language: String,
         @Query("page") page: Int,
     ):TmdbPeopleBaseResponse
 
     @GET("collection/{collection_id}/images")
     suspend fun imageCollections(
-        @Path("collection_id") collection_id: Int,
-        @Header("Authorization") accessToken:String,
-        @Header("accept") accept:String
+        @Path("collection_id") collection_id: Int
     ): ImageCollectionsResponse
 
 }

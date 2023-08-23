@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import android.app.Fragment
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.TextView
@@ -25,6 +26,8 @@ import com.syfuzzaman.mvvm_android_arch.data.storage.SessionPreference
 import com.syfuzzaman.mvvm_android_arch.databinding.ActivityHomeBinding
 import com.syfuzzaman.mvvm_android_arch.extension.navigatePopUpTo
 import com.syfuzzaman.mvvm_android_arch.extension.navigateTo
+import com.syfuzzaman.mvvm_android_arch.extension.observe
+import com.syfuzzaman.mvvm_android_arch.model.Resource
 import com.syfuzzaman.mvvm_android_arch.util.BindingUtil
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -48,6 +51,22 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayShowHomeEnabled(true)
         setupNavController()
 //        supportActionBar?.title = "TMDB HOME"
+//        observeAllTrending("week")
+        homeViewModel.popularMoviesApi()
+    }
+
+    private fun observeAllTrending(timeWindow: String){
+        observe(homeViewModel.trendingApiResponse){
+            when(it){
+                is Resource.Success ->{
+                    Log.d("TMDB_API_LOG", "Data from network: "+it.data)
+                }
+                is Resource.Failure ->{
+                    Log.d("TMDB_API_LOG", "Error from network: "+it.error.code+" - "+it.error.msg)
+                }
+            }
+        }
+        homeViewModel.trendingAll(timeWindow)
     }
 
 
@@ -88,7 +107,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
         binding.appBar.toolbar.setNavigationIcon(R.drawable.ic_video_logo)
-
     }
 
 

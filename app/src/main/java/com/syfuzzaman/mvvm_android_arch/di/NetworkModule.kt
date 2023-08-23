@@ -9,7 +9,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -18,45 +17,65 @@ import javax.inject.Singleton
 @Module
 object NetworkModule {
 
-    //EXTERNAL API RETROFIT SERVICE START
     @Provides
     fun Url() = "https://sample.com/"
 
-    @Provides
-    @Singleton
-    fun providesExternalApiService(url:String) : ExternalApi =
-        Retrofit.Builder()
-            .baseUrl(url)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ExternalApi::class.java)
-
-    //EXTERNAL API RETROFIT SERVICE START
-
-
-    // TMDB API RETROFIT SERVICE START
     @Provides
     @BaseUrlQualifier
     fun providesUrl() = "https://api.themoviedb.org/3/"
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
-        val customInterceptor = CustomLoggingInterceptor()
-
+    @TmdbOkHttpQualifier
+    fun provideOkHttpClientTmdb(): OkHttpClient {
+        val customInterceptor = CustomLoggingInterceptor(includeHeaders = true)
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY // Log response body
+        }
         return OkHttpClient.Builder()
             .addInterceptor(customInterceptor)
+            .addInterceptor(loggingInterceptor)
             .build()
     }
 
     @Provides
     @Singleton
-    fun providesTmdbApiService(@BaseUrlQualifier url: String): TmdbApi =
+    @ExternalOkHttpQualifier
+    fun provideOkHttpClientExternal(): OkHttpClient {
+        val customInterceptor = CustomLoggingInterceptor(includeHeaders = false)
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY // Log response body
+        }
+        return OkHttpClient.Builder()
+            .addInterceptor(customInterceptor)
+            .addInterceptor(loggingInterceptor)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providesTmdbApiService(
+        @BaseUrlQualifier url: String,
+        @TmdbOkHttpQualifier okHttpClient: OkHttpClient
+    ): TmdbApi =
         Retrofit.Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(provideOkHttpClient()) // Use the custom OkHttpClient with interceptor
+            .client(okHttpClient) // Use the appropriate OkHttpClient
             .build()
             .create(TmdbApi::class.java)
-    // TMDB API RETROFIT SERVICE END
+
+    @Provides
+    @Singleton
+    fun providesExternalApiService(
+        url: String,
+        @BaseUrlQualifier baseUrl: String,
+        @ExternalOkHttpQualifier okHttpClientExternal: OkHttpClient
+    ): ExternalApi =
+        Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClientExternal) // Use the appropriate OkHttpClient
+            .build()
+            .create(ExternalApi::class.java)
 }
