@@ -4,6 +4,7 @@ import android.util.Log
 import com.syfuzzaman.mvvm_android_arch.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
+import java.io.IOException
 
 class CustomLoggingInterceptor(private val includeHeaders: Boolean) : Interceptor {
 
@@ -19,10 +20,22 @@ class CustomLoggingInterceptor(private val includeHeaders: Boolean) : Intercepto
             request
         }
 
-        val url = modifiedRequest.url.toString()
-        Log.d("API_LOG", "Method: ${modifiedRequest.method} URL: $url")
+//        val url = modifiedRequest.url.toString()
+//        Log.d("API_LOG", "Method: ${modifiedRequest.method} URL: $url")
 
-        return chain.proceed(modifiedRequest)
+        val response = try {
+            chain.proceed(modifiedRequest)
+        } catch (ex: IOException){
+            throw ex
+        }
+
+        if (response.cacheResponse != null){
+            Log.d("API_LOG", "From Cache, Method: ${modifiedRequest.method} URL: ${response.request.url}")
+        }else if(response.networkResponse != null) {
+            Log.d("API_LOG", "From Network, Method: ${modifiedRequest.method} URL: ${response.request.url}")
+        }
+
+        return response
     }
 }
 

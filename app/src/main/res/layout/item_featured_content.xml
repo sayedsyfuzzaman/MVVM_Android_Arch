@@ -32,23 +32,5 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearance="?attr/shapeAppearanceMediumComponent" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/featured_image"
-            app:layout_constraintEnd_toEndOf="@+id/featured_image"
-            app:layout_constraintStart_toStartOf="@+id/featured_image"
-            app:layout_constraintTop_toTopOf="@+id/featured_image"
-            app:shapeAppearance="?attr/shapeAppearanceMediumComponent" />
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg_bottom_shadow_black"
-            app:layout_constraintBottom_toBottomOf="@+id/featured_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
